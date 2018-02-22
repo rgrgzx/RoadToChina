@@ -7,8 +7,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public enum Slot { Boil, Fry, Grill };
-    public Slot typeOfItem = Slot.Boil;
     public GameObject newObj;
     private RectTransform plane;
     private Transform parentToReturnTo;
@@ -25,7 +23,7 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         //var image = newObj.AddComponent<Image>();
         // The icon will be under the cursor.
         // We want it to be ignored by the event system.
-        var group = newObj.AddComponent<CanvasGroup>();
+        var group = newObj.GetComponent<CanvasGroup>();
         group.blocksRaycasts = false;
         //image.sprite = GetComponent<Image>().sprite;
         //image.SetNativeSize();
@@ -57,8 +55,6 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
   public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
-        
         newObj.transform.SetParent(parentToReturnTo);
         newObj.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
@@ -80,5 +76,8 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
       return comp;
     }
 
-
+    public void clear()
+    {
+        GetComponent<DropMe>().clear();
+    }
 }

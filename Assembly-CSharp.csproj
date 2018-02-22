@@ -52,19 +52,22 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameScreen.cs" />
-     <Compile Include="Assets\Scripts\Reference\boilZone.cs" />
+     <Compile Include="Assets\Scripts\Reference\DishImage.cs" />
      <Compile Include="Assets\Scripts\Reference\draggable.cs" />
      <Compile Include="Assets\Scripts\Reference\DragMe.cs" />
      <Compile Include="Assets\Scripts\Reference\DragPanel.cs" />
      <Compile Include="Assets\Scripts\Reference\DropMe.cs" />
      <Compile Include="Assets\Scripts\Reference\gameplay.cs" />
+     <Compile Include="Assets\Scripts\Reference\Menu.cs" />
      <Compile Include="Assets\Scripts\Reference\PanelManager.cs" />
+     <Compile Include="Assets\Scripts\Reference\PrefabType.cs" />
      <Compile Include="Assets\Scripts\Reference\ResizePanel.cs" />
      <Compile Include="Assets\Scripts\Reference\ScrollDetailTexture.cs" />
      <Compile Include="Assets\Scripts\Reference\Serve.cs" />
      <Compile Include="Assets\Scripts\Reference\ShowSliderValue.cs" />
      <Compile Include="Assets\Scripts\Reference\SlotTypes.cs" />
      <Compile Include="Assets\Scripts\Reference\TiltWindow.cs" />
+     <Compile Include="Assets\Scripts\Reference\Trash.cs" />
      <Compile Include="Assets\Scripts\StartScreen.cs" />
      <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
  <Reference Include="UnityEngine.UI">

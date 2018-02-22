@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 	public bool dragOnSurfaces = true;
-    public string typeOfItem = "Boil";
     private Dictionary<int,GameObject> m_DraggingIcons = new Dictionary<int, GameObject>();
 	private Dictionary<int, RectTransform> m_DraggingPlanes = new Dictionary<int, RectTransform>();
+    public Menu.Ingredient type;
 
 	public void OnBeginDrag(PointerEventData eventData)
 	{
+        
 		var canvas = FindInParents<Canvas>(gameObject);
 		if (canvas == null)
 			return;
-
 		// We have clicked something that can be dragged.
 		// What we want to do is create an icon for this.
 		m_DraggingIcons[eventData.pointerId] = new GameObject("icon");
@@ -26,8 +26,8 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
 
         var image = m_DraggingIcons[eventData.pointerId].AddComponent<Image>();
-        var t=m_DraggingIcons[eventData.pointerId].AddComponent<SlotTypes>();
-        t.typeOfItem = typeOfItem;
+        //var t=m_DraggingIcons[eventData.pointerId].AddComponent<SlotTypes>();
+        //t.typeOfItem = typeOfItem;
         // The icon will be under the cursor.
         // We want it to be ignored by the event system.
         var group = m_DraggingIcons[eventData.pointerId].AddComponent<CanvasGroup>();
