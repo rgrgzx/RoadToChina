@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour {
             time -= Time.deltaTime;
             fillImg.fillAmount = time / timeAmt;
         }
-        else
+        else if(time<=0)
         {
             this.transform.parent.gameObject.GetComponent<draggable>().setFinish();
         }

@@ -12,6 +12,8 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private Transform parentToReturnTo;
     private bool finished=false;
 
+
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         var timer = this.gameObject.transform.GetChild(0).gameObject;
@@ -23,7 +25,6 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         newObj = gameObject;
         newObj.transform.SetParent(canvas.transform, false);
         newObj.transform.SetAsLastSibling();
-        //var image = newObj.AddComponent<Image>();
         // The icon will be under the cursor.
         // We want it to be ignored by the event system.
         var group = newObj.GetComponent<CanvasGroup>();
@@ -83,16 +84,20 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         finished = true;
     }
-
+    
     public bool getFinish()
     {
         return finished;
+    }
+
+    public Menu.Dish getDish()
+    {
+        return GetComponent<DropMe>().getDish();
     }
 
     public void clear()
     {
         finished = false;
         GetComponent<DropMe>().clear();
-
     }
 }

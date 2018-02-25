@@ -14,6 +14,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
     public Sprite defaultImg;
     private List<Menu.Dish> myMenu;
     private HashSet<Menu.Ingredient> currentDish;
+    private Menu.Dish dish;
     private GameObject timer;
 
     public void OnEnable ()
@@ -22,6 +23,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
         myMenu = Menu.getMenu(cookerMenu);
         currentDish = new HashSet<Menu.Ingredient>();
         timer= this.gameObject.transform.GetChild(0).gameObject;
+        dish = Menu.Dish.Wrong;
     }
 	
 	public void OnDrop(PointerEventData data)
@@ -51,6 +53,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
             {
                 GetComponent<Image>().sprite = GetComponent<DishImage>().getSprite(m);
                 timer.GetComponent<Timer>().RunTime();
+                dish = m;
                 return;
             }
             if (book.Contains(thisIngredient)) accept = true;
@@ -71,6 +74,11 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 		if (dropSprite != null)
 			receivingImage.sprite = dropSprite;
 	}
+
+    public Menu.Dish getDish()
+    {
+        return dish;
+    }
 
     private bool isWrong()
     {
@@ -130,6 +138,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
         currentDish.Clear();
         GetComponent<Image>().sprite = defaultImg;
         timer.GetComponent<Timer>().ClearTime();
+        dish = Menu.Dish.Wrong;
     }
 
 

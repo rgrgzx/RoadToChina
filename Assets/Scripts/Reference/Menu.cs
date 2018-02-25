@@ -7,7 +7,7 @@ public class Menu
 {
     public enum Ingredient { tomato, beef, pepper, bean, bun, dumpling };
     public enum Type { PotMenu, SteamerMenu };
-    public enum Dish { TomatoBeef, PepperBean, Bun, Dumpling}
+    public enum Dish { TomatoBeef, PepperBean, Bun, Dumpling, Wrong}
 
     public static List<Dish> getMenu(Type type)
     {

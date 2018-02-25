@@ -18,10 +18,12 @@ public class Trash : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData data)
     {
+       
         var originalObj = data.pointerDrag;
         if (originalObj == null)
             return;
         var drag = originalObj.GetComponent<draggable>();
+        Debug.Log(drag.getFinish());
         if (drag == null)
             return;
         drag.clear();
