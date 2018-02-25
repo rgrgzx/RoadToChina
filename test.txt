@@ -1,3 +1,7 @@
 add a new file.
+<<<<<<< HEAD
 add another file.
 
+=======
+another try.
+>>>>>>> add-a-new-file
