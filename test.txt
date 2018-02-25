@@ -1,7 +1,10 @@
 add a new file.
 <<<<<<< HEAD
+<<<<<<< HEAD
 add another file.
 
 =======
 another try.
 >>>>>>> add-a-new-file
+=======
+>>>>>>> parent of 1f86378... Merge branch 'add-another-file'
