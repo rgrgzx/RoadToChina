@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Reference\ShowSliderValue.cs" />
      <Compile Include="Assets\Scripts\Reference\SlotTypes.cs" />
      <Compile Include="Assets\Scripts\Reference\TiltWindow.cs" />
+     <Compile Include="Assets\Scripts\Reference\Timer.cs" />
      <Compile Include="Assets\Scripts\Reference\Trash.cs" />
      <Compile Include="Assets\Scripts\StartScreen.cs" />
      <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />

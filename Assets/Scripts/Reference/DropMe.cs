@@ -14,13 +14,15 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
     public Sprite defaultImg;
     private List<Menu.Dish> myMenu;
     private HashSet<Menu.Ingredient> currentDish;
+    private GameObject timer;
 
     public void OnEnable ()
 	{
         GetComponent<Image>().sprite = defaultImg;
         myMenu = Menu.getMenu(cookerMenu);
         currentDish = new HashSet<Menu.Ingredient>();
-	}
+        timer= this.gameObject.transform.GetChild(0).gameObject;
+    }
 	
 	public void OnDrop(PointerEventData data)
 	{
@@ -39,6 +41,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 
         //check if it is in menu, m is Menu.Dish
         bool accept = false;
+        
         HashSet<Menu.Ingredient> book;
         foreach (var m in myMenu)
         {
@@ -47,16 +50,46 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
             if (book.SetEquals(currentDish))
             {
                 GetComponent<Image>().sprite = GetComponent<DishImage>().getSprite(m);
+                timer.GetComponent<Timer>().RunTime();
                 return;
             }
             if (book.Contains(thisIngredient)) accept = true;
         }
-        if (!accept) return;
+        if (!accept)
+        {
+            currentDish.Remove(thisIngredient);
+            return;
+        }
+
+
+        if (isWrong()) {
+            GetComponent<Image>().sprite = GetComponent<DishImage>().Wrong.GetComponent<SpriteRenderer>().sprite;
+            return;
+        }
 
         Sprite dropSprite = GetDropSprite (data);
 		if (dropSprite != null)
 			receivingImage.sprite = dropSprite;
 	}
+
+    private bool isWrong()
+    {
+        HashSet<Menu.Ingredient> book;
+        bool result=false;
+        bool tmp;
+        foreach (var m in myMenu)
+        {
+            book = Menu.getCookBook(m);
+            tmp = false;
+            foreach(var i in currentDish)
+            {
+                result = true;
+                if (!book.Contains(i)) tmp=true;
+            }
+            if (!tmp) return false;
+        }
+        return result;
+    }
 
 	public void OnPointerEnter(PointerEventData data)
 	{
@@ -96,6 +129,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
     {
         currentDish.Clear();
         GetComponent<Image>().sprite = defaultImg;
+        timer.GetComponent<Timer>().ClearTime();
     }
 
 

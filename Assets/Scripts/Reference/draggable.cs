@@ -10,9 +10,12 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public GameObject newObj;
     private RectTransform plane;
     private Transform parentToReturnTo;
+    private bool finished=false;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        var timer = this.gameObject.transform.GetChild(0).gameObject;
+        timer.GetComponent<Timer>().Pause();
         parentToReturnTo = this.transform.parent;
         var canvas = FindInParents<Canvas>(gameObject);
         if (canvas == null)
@@ -25,8 +28,6 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         // We want it to be ignored by the event system.
         var group = newObj.GetComponent<CanvasGroup>();
         group.blocksRaycasts = false;
-        //image.sprite = GetComponent<Image>().sprite;
-        //image.SetNativeSize();
 
         plane = transform as RectTransform;
 
@@ -55,6 +56,8 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
   public void OnEndDrag(PointerEventData eventData)
     {
+        var timer = this.gameObject.transform.GetChild(0).gameObject;
+        timer.GetComponent<Timer>().Resume();
         newObj.transform.SetParent(parentToReturnTo);
         newObj.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
@@ -76,8 +79,20 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
       return comp;
     }
 
+    public void setFinish()
+    {
+        finished = true;
+    }
+
+    public bool getFinish()
+    {
+        return finished;
+    }
+
     public void clear()
     {
+        finished = false;
         GetComponent<DropMe>().clear();
+
     }
 }

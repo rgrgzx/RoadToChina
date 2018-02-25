@@ -8,6 +8,7 @@ public class DishImage : MonoBehaviour {
     public GameObject PepperBean;
     public GameObject Bun;
     public GameObject Dumpling;
+    public GameObject Wrong;
     // Use this for initialization
     void Start()
     {
